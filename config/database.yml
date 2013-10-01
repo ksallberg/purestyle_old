@@ -4,8 +4,7 @@
 development:
  adapter: mysql2
  encoding: utf8
- database: heroku_a223c9262443297
+ database: mysql://be9166aaba4725:b98aaea2@eu-cdbr-west-01.cleardb.com/heroku_a223c9262443297?reconnect=true
  pool: 5
  username: root
  password: root
- socket: /var/run/mysqld/mysqld.sock
