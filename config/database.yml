@@ -2,20 +2,20 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 
 development:
- adapter: postgresql
+ adapter: mysql2
  encoding: utf8
- database: d6j8gt7ndjncbg
+ database: pure_blog_development
  pool: 5
- username: wkzdhtwvdofnpl
- password: YbvDaNtD2_88RO1rCSbyAnBoFW
- socket: 5432
+ username: root
+ password: .-.-.-(H4h4ha)-.-.-.
+ socket: /var/run/mysqld/mysqld.sock
 
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
- adapter: postgresql
+ adapter: mysql2
  encoding: utf8
  database: pure_blog_test
  pool: 5
@@ -24,7 +24,7 @@ test:
  socket: /var/run/mysqld/mysqld.sock
 
 production:
- adapter: postgresql
+ adapter: mysql2
  encoding: utf8
  database: pure_blog_production
  pool: 5
