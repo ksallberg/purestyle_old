@@ -1,0 +1,37 @@
+<% 
+	isTag = tagMode( request.request_uri )
+	
+	postsToShow = @posts
+
+#	if( !isTag )
+#		postsToShow = @posts[0..4]
+#	end
+
+	#Loop through all posts!
+	postsToShow.each do |post| %>
+
+<%
+	#If a tag is listed or if all tags are accepted
+	isOkTag = tagMode( request.request_uri ) && isWithinTag( request.request_uri, post )
+	
+	if isOkTag or !isTag	
+%>
+
+<div class="post">
+	
+	<%= render :partial => "/posts/postHeader",
+			   :locals => { :post => post, :headerIsLink => true } %>
+	
+	<div class="postText">
+		<p class="medium">
+			<%= strip_tags( truncate_words( post.content, 20, "..." ).html_safe ) %>
+        	</p>
+	</div>
+
+	
+	<div class="break"></div>
+	<p class="smallright"><%= link_to "read more.", post %></p>
+</div>
+
+<% 	end
+ 	end  %>

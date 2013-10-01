@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<link rel="alternate" type="applications/rss+xml" title="RSS" href="feed://purestyle.se/rss" />
+	
+	<script src="/javascripts/jquery-1.3.1.js" type="text/javascript"></script>
+	<script src="/javascripts/application.js" type="text/javascript"></script>
+	<script src="/javascripts/purestyle.js" type="text/javascript"></script>
+	<script src="/javascripts/webtoolkit.base64.js" type="text/javascript"></script>
+
+	<% 
+		titleString = "purestyle."
+		
+		pos = request.request_uri.split("/")
+		
+		if(pos.length > 1)
+			pos = pos[1..pos.length]
+		end
+
+		if( pos.length > 0 )
+			pos.each do |txt|
+				titleString += " + " + txt
+			end
+		end
+	%>
+	
+	<title>
+		<%=
+			titleString
+		%>
+	</title>
+	
+	<%= stylesheet_link_tag "purestyle", "coderay" %>
+	<% #javascript_include_tag :defaults %>
+	<%= csrf_meta_tag %>
+	
+	<script type="text/javascript">
+
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-22975833-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+
+	</script>
+</head>
+
+<!--#0066cc-->
+<!--#002897=blue-->
+<body style="background: #344575">
+		
+	<div class="top">
+		<p class="top">code snippets from <%= link_to "someone", "/about" %> studying the art of computer science, a public notebook.</p>
+	</div>
+		
+	<div class="siteContainer">
+		<%=
+			if( request.request_uri[0..6] == "/posts/" )
+				'<div style="width: 990px;">'.html_safe
+			else
+				'<div style="width: 815px;">'.html_safe
+			end
+		%>
+		
+		<div class="logo">
+			<a href="/"><img src="/images/pstyle.png" alt=""></img></a>
+		</div>
+		<div>
+			<div id="posts" class="posts">
+				<%= yield %>
+				<p class="smallWhite">copyright <%= Time.new.year %>. <%= link_to "font by ¶", "http://www.lufthamn.com" %></p>
+				<div class="break"></div>
+			</div>
+		</div>
+		<div id="rightSide" class = "rightSide">
+			<%= render 'posts/menu' %>
+			<%= render 'posts/friends' %>
+			<div id="validator">
+   				<a href="http://validator.w3.org/check?uri=referer">
+					<img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="31" width="88" />
+				</a>
+  			</div>
+		</div>
+	</div>
+	</div>
+	
+	<script type="text/javascript">
+		postsIn();
+	</script>
+	
+</body>
+</html>

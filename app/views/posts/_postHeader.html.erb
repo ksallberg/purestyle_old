@@ -1,0 +1,18 @@
+<div class="header">
+	<p class="large" style="text-decoration:none">
+		<% if headerIsLink %>
+		<%=	link_to post.title, post %>
+		<% else %>
+		<%=	post.title %>
+		<% end %>
+	</p>
+	<div class="border"></div>
+</div>
+<p class="small">Date: <%= post.created_at.to_s()[0..15] %> tags:
+	
+	<% getTagsForPost(post).each do |tag| %>
+		<%= link_to tag, "/tags/" + tag %>
+	<% end %>
+
+</p>
+<div class="break"></div>

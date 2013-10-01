@@ -1,0 +1,45 @@
+.CodeRay {
+  background-color: #000000;
+  border: 0px solid black;
+  font-family: "Bookman Old Style",	/* Windows, MacOS */
+	    "Serifa BT",		/* Windows XP. Not the same font,
+					   but the overall look is close enough. */
+	    "URW Bookman L",		/* Unix+X+FontConfig */
+	    "itc bookman",		/* Unix+X */
+	/* Fallback options */
+	    times,			/* Unix+X, MacOS */
+	    serif;
+  color: #FFFFFF;
+  padding: 3px 5px;
+  overflow: auto;
+  font-size: 12px;
+  margin: 12px 0;
+  font-weight: lighter;
+  font-size: 12.5px;
+  letter-spacing: -0.05em;
+  line-height: 14px;
+}
+
+.CodeRay pre {
+  margin: 0px;
+  padding: 0px;
+}
+
+.CodeRay .an { color:#E7BE69 }                      /* html attribute */
+.CodeRay .c  { color:#ff9999; font-style: italic; } /* comment */
+.CodeRay .ch { color:#509E4F }                      /* escaped character */
+.CodeRay .cl { color:#fff321 }                         /* class */
+.CodeRay .co { color:#FFF }                         /* constant */
+.CodeRay .fl { color:#68e7c8 }                      /* float */
+.CodeRay .fu { color:#fff321 }                      /* function */
+.CodeRay .gv { color:#D0CFFE }                      /* global variable */
+.CodeRay .i  { color:#68e7c8 }                      /* integer */
+.CodeRay .il { background:#151515 }                 /* inline code */
+.CodeRay .iv { color:#55a4f3 }                      /* instance variable */
+.CodeRay .pp { color:#E7BE69 }                      /* doctype */
+.CodeRay .r  { color:#ff0066 }                      /* keyword */
+.CodeRay .rx { color:#68e7c8 }                      /* regex */
+.CodeRay .s  { color:#68e7c8 }                      /* string */
+.CodeRay .sy { color:#55a4f3 }                      /* symbol */
+.CodeRay .ta { color:#E7BE69 }                      /* html tag */
+.CodeRay .pc { color:#fff321 }                      /* boolean */

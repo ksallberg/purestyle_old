@@ -1,0 +1,67 @@
+<table cellspacing="0" cellpadding="0" border="0">
+	
+	<tr>
+		
+		<td bgcolor="#e9e9e9" width="1"></td>
+		<td bgcolor="#ffffff" width="155"></td>
+		<td bgcolor="#e5e3e4" width="1"><img src="images/tableTopSeparator.png"></img></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="22"></td>
+		<td bgcolor="#ffffff" width="111">s</td>
+		<td bgcolor="#e5e3e4" width="1"><img src="images/tableTopSeparator.png"></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="96">s</td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td bgcolor="#e1e0da" width="1"></td>
+		<td bgcolor="#ecebe5" width="155"><p class="priceTableHeader">Till alla fasta telenät:</p></td>
+		<td bgcolor="#e5e2e0" width="1"></img></td>
+		<td bgcolor="#f1f0eb" width="1"></td>
+		<td bgcolor="#ecebe5" width="133">sa<br>aa</td>
+		<td bgcolor="#e4e1e0" width="1"></td>
+		<td bgcolor="#f1f0eb" width="1"></td>
+		<td bgcolor="#ecebe5" width="96">s</td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td bgcolor="#e9e9e9" width="1"></td>
+		<td bgcolor="#ffffff" width="155"><p class="priceTableHeader">Till Telias mobilabonnemang:</p></td></td>
+		<td bgcolor="#e5e3e4" width="1"></img></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="133">s</td>
+		<td bgcolor="#e5e3e4" width="1"></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="96">s</td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td bgcolor="#e1e0da" width="1"></td>
+		<td bgcolor="#ecebe5" width="155"><p class="priceTableHeader">Till övriga mobilabonnemang:</p></td>
+		<td bgcolor="#e5e2e0" width="1"></img></td>
+		<td bgcolor="#f1f0eb" width="1"></td>
+		<td bgcolor="#ecebe5" width="133">sa<br>aa</td>
+		<td bgcolor="#e4e1e0" width="1"></td>
+		<td bgcolor="#f1f0eb" width="1"></td>
+		<td bgcolor="#ecebe5" width="96">s</td>
+		
+	</tr>
+	
+	<tr>
+		
+		<td bgcolor="#e9e9e9" width="1"></td>
+		<td bgcolor="#ffffff" width="155"></td></td>
+		<td bgcolor="#e5e3e4" width="1"></img></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="133">s</td>
+		<td bgcolor="#e5e3e4" width="1"></td>
+		<td bgcolor="#ffffff" width="1"></td>
+		<td bgcolor="#ffffff" width="96">s</td>
+		
+	</tr>

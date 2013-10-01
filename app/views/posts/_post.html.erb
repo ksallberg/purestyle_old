@@ -1,0 +1,19 @@
+<div class="post">
+	<div class="header">
+		<p class="large"><%= post.title %></p>
+		<div class="border"></div>
+	</div>
+	<p class="small">Date: <%= post.created_at.to_s()[0..15] %> Tags: 
+		
+		<% getTagsForPost(post).each do |tag| %>
+		<%= link_to tag, "/tags/" + tag %>
+		<% end %>
+	
+	</p>
+	<div class="break"></div>
+	<div class="postText">
+		<%= post.content.html_safe %></p>
+	</div>
+	<div class="break"></div>
+	<p class="smallright"><%= link_to 'Read more', post %></p>
+</div>

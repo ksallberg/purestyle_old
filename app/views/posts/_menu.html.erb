@@ -1,0 +1,19 @@
+<div class="menu">
+	
+	<p class="small">tags:</p>
+	<br />
+	
+	<%
+		getTags.sort!.each do |tag|
+	%>
+	<p class="small">
+	<%=
+			link_to tag, "/tags/" + tag
+	%>
+	</p>
+	<%
+		end
+	%>
+	<div class="break"></div>
+	<a href="feed://purestyle.se/rss"><img src="/images/rss.png" alt=""></img></a>
+</div>

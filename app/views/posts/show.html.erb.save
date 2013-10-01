@@ -1,0 +1,34 @@
+<script type="text/javascript">
+	changeBackground("<%= @post.bgcolor %>")
+</script>
+
+<div class="postFocused">
+	<%= render  :partial => "/posts/postHeader", 
+				:locals => { :post => @post, :headerIsLink => false } %>
+				
+	<div class="showPostText">
+                        <%= coderay( @post.content ).html_safe %>
+	</div>
+	
+	
+</div>
+
+<div class="postFocused">
+	
+	<div class="header">
+		<p class="large">comments:</p>
+		<div class="border"></div>
+	</div>
+	
+	<% sortedComments = @post.comments.sort! { |a,b| b.created_at <=> a.created_at } %>
+
+	<%= render :partial => "comments/comment",
+	           :collection => sortedComments %>
+	
+	<p class="small">----</p>
+	
+	<p class="small">Add a comment:</p>
+	<div class="break"></div>
+	
+	<%= render "comments/form" %>
+</div>

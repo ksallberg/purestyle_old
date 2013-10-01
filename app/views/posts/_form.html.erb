@@ -1,0 +1,51 @@
+<div class="break"></div>
+<%= form_for(@post) do |post_form| %>
+	
+	<% if @post.errors.any? %>
+
+	<div id="errorExplanation">
+		<p class="small">
+			<u><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</u>
+		</p>
+		<div class="break"></div>
+		<% @post.errors.full_messages.each do |msg| %>
+			<p class="small"><%= "+ " + msg %></p>
+		<% end %>
+	</div>
+	
+	<div class="break"></div>
+	
+	<% end %>
+	
+	<div class="field">
+		<p class="small">
+			<%= post_form.label "Title:" %>
+		</p>
+		<%= post_form.text_field :title %>
+	</div>
+
+	<div class="field">
+		<p class="small">
+			<%= post_form.label "Post:" %>
+		</p>
+		<%= post_form.text_area :content %>
+	</div>
+
+	<div class="field">
+		<p class="small">
+			<%= post_form.label "Background color, including #" %>:
+		</p>
+		<%= post_form.text_field :bgcolor %>
+	</div>
+
+	<div class="field">
+		<p class="small">
+			<%= post_form.label 'Tags, divide by ",":' %>
+		</p>
+		<%= post_form.text_field :category %>
+	</div>
+	
+	<div class="actions">
+		<%= post_form.submit %>
+	</div>
+<% end %>

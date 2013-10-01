@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+		<style type="text/css">
+		
+			#map_canvas {
+				
+				width: 400px;
+				height: 700px;
+			}
+			
+			#DivExample {
+				
+				width: 400px;
+				height: 400px;
+			}
+			
+	    </style>
+		
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>Google Maps JavaScript API v3 Example: Simple Icons</title>
+		<!--<link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />-->
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript">
+			
+			var map;
+			var markersArray = [];
+			
+			function clearOverlays() {
+			  if (markersArray) {
+			    for (var i = 0; i < markersArray.length; i++ ) {
+			      markersArray[i].setMap(null);
+			    }
+			  }
+			}
+			
+			function addPin( map, lat, lng, msg ) {
+				
+			//	lat = 57.6819387006996;
+			//	lng = 11.9814792831345;
+			//	msg = "Fyndplats";
+				
+				
+//				alert("11");
+				var image = 'smiley.png';
+				var myLatLng = new google.maps.LatLng(lat, lng);
+				var infoMarker = new google.maps.Marker({
+					position: myLatLng,
+					map: map,
+					icon: image
+				});
+				
+				markersArray.push( infoMarker );
+				
+//				alert("22");
+				var infowindow = new google.maps.InfoWindow();
+//				alert("33");
+				google.maps.event.addListener(infoMarker, 'click', function() {
+					
+					infowindow.setContent( msg );
+					infowindow.open(map, this);
+				});
+				
+//				alert(lat + ", " + lng + ", " + msg + ", " + map );
+			}
+			
+			function successCallback( pos ) {
+				
+				var currentPosition = new google.maps.LatLng( pos.coords.latitude, pos.coords.longitude );
+				
+				var myOptions = {
+					zoom: 15,
+					center: currentPosition,//new google.maps.LatLng(-33, 151),
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				}
+				
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+				var myLatLng = new google.maps.LatLng(-33.890542, 151.274856);
+				var beachMarker = new google.maps.Marker({
+					position: currentPosition,
+					map: map
+				});
+				
+				google.maps.event.addListener(map, 'zoom_changed', function() {
+					
+					//var zoomLevel = map.getZoom();
+					//map.setCenter(myLatLng);
+					clearOverlays();
+					
+					google.maps.event.addListenerOnce(
+						map, 
+						'bounds_changed', 
+						drawPins
+					);
+				});
+				
+				google.maps.event.addListenerOnce(
+					map, 
+					'bounds_changed', 
+					drawPins
+				);
+			}
+		
+			function handleError(err) {
+				
+				if (err.code === 1) {
+			
+					alert("Sorry, this feature will not work without your position");
+				}
+			}
+		
+			function initialize() {
+				
+				if(  navigator.geolocation ) {
+					
+					navigator.geolocation.getCurrentPosition( successCallback, handleError );
+					
+				} else {
+
+					alert( "Doesn't work!" );
+				}
+			}
+			
+			function drawPins() {
+				
+				var west = map.getBounds().getSouthWest().lng();
+				var south = map.getBounds().getSouthWest().lat();
+				var east = map.getBounds().getNorthEast().lng();
+				var north = map.getBounds().getNorthEast().lat();
+				
+		        // Showing the lat/lng
+				var queryString = 'http://kulturarvsdata.se/ksamsok/api?method=search&hitsPerPage=100&x-api=%22test%22&query=boundingBox=/WGS84 "' + west + ' ' + south + ' ' + east + ' ' + north + '"';
+				
+//				alert( queryString );
+				
+				$(document).ready(function(){
+				  var container = $('#info_container');
+					
+				  doAjax(queryString.replace(/\s/g,"%20").replace(/"/g,"%22"));
+			
+				  return false;
+				
+				  function doAjax(url){
+					
+				    if(url.match('^http')){
+						
+					  var adr = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D%22" + encodeURIComponent(url) + "%22&format=xml'&callback=?";
+					
+				      $.getJSON(
+				                adr
+				                ,
+				        function(data){
+							
+				          if(data.results[0]) {
+					
+							var data = data.results[0];
+							
+							var xmlDoc = $.parseXML( data );
+							
+							var _xml = $( xmlDoc );
+					
+							$(_xml).find("record").each(function() {
+								
+								var descr;
+								var label;
+								var point;
+								var position;
+								
+								if( navigator.userAgent.indexOf("Firefox") != -1 ) {
+									
+									descr = $(this).find("rdf\\:RDF").find("rdf\\:Description:first");
+									label = $(descr).find("ns5\\:itemLabel").text();
+
+									point = $(descr).find("gml\\:Point:first");
+									position = $(point).find("gml\\:coordinates").text();
+									
+								} else {
+									
+									descr = $(this).find("RDF").find("Description:first");
+									label = $(descr).find("itemLabel:first").text();
+									
+									point 		= $(descr).find("Point:first");
+									position 	= $(point).find("coordinates").text();
+								}
+								
+								addPin( map, position.split(",")[1], position.split(",")[0], label );
+							});
+							
+				          } else {
+				            var errormsg = '<p>Error: could not load the page.</p>';
+				            container.html(errormsg);
+				          }
+				        }
+				      );
+				    } else {
+				      $('#target').load(url);
+				    }
+				  }
+				});
+				
+				
+			}
+			
+		</script>
+	</head>
+	
+<body onload="initialize()">
+	
+	<div id="map_canvas"></div>
+
+	<div id="info_container">
+		
+		Klicka på coola© smileyn™.
+		
+	</div>
+</body>
+
+</html>
