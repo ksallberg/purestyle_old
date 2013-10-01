@@ -2,13 +2,13 @@
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
 
 development:
- adapter: mysql2
+ adapter: postgresql
  encoding: utf8
- database: pure_blog_development
+ database: d6j8gt7ndjncbg
  pool: 5
- username: root
- password: .-.-.-(H4h4ha)-.-.-.
- socket: /var/run/mysqld/mysqld.sock
+ username: wkzdhtwvdofnpl
+ password: YbvDaNtD2_88RO1rCSbyAnBoFW
+ socket: 5432
 
 
 # Warning: The database defined as "test" will be erased and
